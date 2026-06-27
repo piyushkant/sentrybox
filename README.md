@@ -1,8 +1,8 @@
 # SentryBox
 
-A motion-triggered smart camera system. When movement is detected, ESP32-CAM captures an image, uploads it to AWS S3, and an AI pipeline (AWS Rekognition) analyzes it — results visible in a web dashboard and mobile app.
+A motion-triggered smart camera system. When movement is detected, an ESP32-CAM captures an image and uploads it to AWS S3. From there, AWS Rekognition analyzes the image and the results show up in a web dashboard and mobile app.
 
-**Status:** Planned — starting after [Stashbox](https://github.com/piyushkant/stashbox) is complete.
+**Status:** Planned. Starting after [Stashbox](https://github.com/piyushkant/stashbox) is complete.
 
 ## Tech Stack
 
@@ -13,17 +13,17 @@ A motion-triggered smart camera system. When movement is detected, ESP32-CAM cap
 - **Mobile:** Kotlin Multiplatform (Android + iOS)
 - **CI/CD:** GitHub Actions
 
-## Architecture
+## How it works
 
 ```
-ESP32-CAM → motion detected
-    → capture image
-    → AWS IoT Core (MQTT)
-    → Lambda
-    → Rekognition (AI labels)
-    → RDS (store event)
-    → Spring Boot API
-    → Vue dashboard / KMP mobile app
+ESP32-CAM detects motion
+    -> captures image
+    -> sends to AWS IoT Core (MQTT)
+    -> triggers Lambda
+    -> Rekognition analyzes image
+    -> results saved to RDS
+    -> visible via Spring Boot API
+    -> Vue dashboard and KMP mobile app
 ```
 
 ## Plan
